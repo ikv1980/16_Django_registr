@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %} 
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block topic %}
+<h1 class="pt-4 fw-semybold text-dark fs-1 pb-2 align-self-center home">
+        {{ topic }}
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <p class="fs-3">Делаем работу быстро и качественно</p>
+    <div class="block">
+        <a class="btn btn-danger mt-5 px-4 py-3" href="{% url 'uslugi' %}">Посмотреть услуги</a>
+    </div>
+    <hr>
+    <div class="container">
+        {% for post in news %}
+        <div class="alert alert-light">
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.text }}</p>
+            <span class="text-muted">Публикация: {{ post.date|date:"j F Y, время: H:i:s" }}</span>
+            {% if post.avtor %}
+            <p><b>Автор:</b> <mark>{{ post.avtor }}</mark></p>
+            {% else %}
+            <p><b>Автор:</b> <mark>Админ</mark></p>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
